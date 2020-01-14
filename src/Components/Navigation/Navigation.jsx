@@ -5,8 +5,10 @@ import {NavLink} from "react-router-dom";
 const Navigation = () => {
     return (
         <div className={style.navigationWrapper}>
-            <NavLink to="/MainContent/MainContent">Content</NavLink>
-            <NavLink to="/Messages/Messages">Messages</NavLink>
+            <NavLink to="/profile">Profile</NavLink>
+            <NavLink to="/newsfeed">Newsfeed</NavLink>
+            <NavLink to="/friends">Friends</NavLink>
+            <NavLink to="/messages">Messages</NavLink>
         </div>
     )
 };

@@ -3,7 +3,7 @@ import style from "./Messages.module.sass";
 
 const Messages = () => {
     return (
-        <div className={style.navigationWrapper}>
+        <div className={style.messagesWrapper}>
             messages
         </div>
     )
