@@ -7,7 +7,7 @@ const Navigation = () => {
         <div className={style.navigationWrapper}>
             <NavLink to="/profile">Profile</NavLink>
             <NavLink to="/newsfeed">Newsfeed</NavLink>
-            <NavLink to="/friends">Friends</NavLink>
+            <NavLink to="/friendlist">Friends</NavLink>
             <NavLink to="/messages">Messages</NavLink>
         </div>
     )

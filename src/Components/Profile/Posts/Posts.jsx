@@ -1,12 +1,12 @@
 import React from "react";
-import style from "./Friends.module.sass";
+import style from "./Posts.module.sass";
 
-const Friends = () => {
+const Posts = () => {
     return (
         <div className={style.contentWrapper}>
-            Friends
+            post
         </div>
     )
 };
 
-export default Friends;
+export default Posts;

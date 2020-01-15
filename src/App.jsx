@@ -4,9 +4,9 @@ import Header from "./Components/Header/Header";
 import Navigation from "./Components/Navigation/Navigation";
 import Profile from "./Components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
-import Messages from "./Components/Messages/Messages";
+import Dialog from "./Components/Messages/Dialog";
 import Newsfeed from "./Components/Newsfeed/Newsfeed";
-import Friends from "./Components/Friends/Friends";
+import Friendslist from "./Components/Friendlist/Friendslist";
 
 const App = () => {
     return (
@@ -16,8 +16,8 @@ const App = () => {
                 <Navigation/>
                 <Route path="/profile" component={Profile}/>
                 <Route path="/newsfeed" component={Newsfeed}/>
-                <Route path="/friends" component={Friends}/>
-                <Route path="/messages" component={Messages}/>
+                <Route path="/friendlist" component={Friendslist}/>
+                <Route path="/messages" component={Dialog}/>
             </div>
         </BrowserRouter>
     );
