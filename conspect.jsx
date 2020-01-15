@@ -23,3 +23,5 @@ const DialogItem= () => {
 <DialogItem name={name} id={id} />
 // сообщения также инкапсулируем, иными словами, готовим компоненты к приёму пропсов
 // и мапим их, как на семинарчике))
+//Route для передачи пропсов
+        <Route path=’/component’ render={() => <Component />} />
