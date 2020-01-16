@@ -25,3 +25,9 @@ const DialogItem= () => {
 // и мапим их, как на семинарчике))
 //Route для передачи пропсов
         <Route path=’/component’ render={() => <Component />} />
+
+//ещё зафигачить функцию пуша в массив из data и передать её в пропсах, после чего в компоненте жахнуть
+let something = () => {
+    let text = (реф на  инпут).current.value;
+    functionFromData(text);
+}
