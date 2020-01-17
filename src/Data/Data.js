@@ -1,4 +1,6 @@
-let Data = {
+import {render} from "./render";
+
+let data = {
     chat: {
         messages: [
             {message: 'норм', id: 1},
@@ -19,6 +21,21 @@ let Data = {
         {name: 'Дементий', id: 4},
     ],
     newsfeed: [],
+    posts: [
+        {post: 'Hey there!', id: 1, likesCount: 5},
+        {post: 'Nigga', id: 2, likesCount: 4},
+        {post: 'Bitch!', id: 3, likesCount: 3},
+    ],
 };
 
-export default Data;
+export let addPost = (postMessage) => {
+    let newPost = {
+        post: postMessage,
+        id: data.posts.length+1,
+        likesCount: 1,
+    };
+    data.posts.push(newPost);
+    render(data, addPost);
+};
+
+export default data;
