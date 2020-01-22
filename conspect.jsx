@@ -38,3 +38,20 @@ let something = () => {
     {functionName(){function body}}
  при этом при обращении кр внутренним методам или переменным нужен this, а при коллбэке bind(родительский объект)
 и _имяМетода/переменная - для внутреннего использования, для передачи data юзаю setData(return this.data)
+
+38 создаём метод dispatch9(action) {
+    if (action.type === "SOMETHING-SOMEBODY") {}
+
+}
+при этом функции, вызывающие диспатч,
+    let functionName = () => {
+        action = {type: "SOMETHING-SOMEBODY", anotherArgument: value};
+    props.dispatch(action)
+    };
+ другой аргумент называется, как переменная в теле функцции соответствующего диспатча
+39 создаём ActionCreator (вроде просто, ретурнит action типа const smth = () =>({object})
+вызывае его в диспатче
+props.dispatch(actionCreator(argument if having it))
+и зафигачть форму в meassages и браузер-роутером в индексе обернуть и использовать вместо
+рефа event.target (current.target для инпутов и textarea)
+40
