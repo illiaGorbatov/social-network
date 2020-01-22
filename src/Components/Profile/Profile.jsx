@@ -5,12 +5,13 @@ import Post from "./Post/Post";
 import AddPost from "./AddPost/AddPost";
 
 const Profile = (props) => {
-    let posts = props.posts.map(post => <Post id={post.id} postContent={post.post}/>);
+    let posts = props.profile.posts.map(post => <Post id={post.id} postContent={post.post}/>);
 
     return (
         <div className={style.profileWrapper}>
             <ProfileLogo/>
-            <AddPost addPost={props.addPost}/>
+            <AddPost addPost={props.addPost} postInputValue={props.profile.postInputValue}
+                     updatePostCurrentValue={props.updatePostCurrentValue}/>
             {posts}
         </div>
     )

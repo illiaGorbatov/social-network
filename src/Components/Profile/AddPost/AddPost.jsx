@@ -3,16 +3,15 @@ import style from "./AddPost.module.sass";
 
 const AddPost = (props) => {
     let newPost = React.createRef();
-    let addPost = () => {
-        let postMessage = newPost.current.value;
-        props.addPost(postMessage);
-        newPost.current.value = '';
+    let updatePostValue = () => {
+        let value = newPost.current.value;
+        props.updatePostCurrentValue(value);
     };
 
     return (
         <div className={style.addPost}>
-            <input type={'text'} ref={newPost}></input>
-            <button onClick={addPost}>Add</button>
+            <input onChange={updatePostValue} ref={newPost} value={props.postInputValue}/>
+            <button onClick={props.addPost}>Add</button>
         </div>
     )
 };
