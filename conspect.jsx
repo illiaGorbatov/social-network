@@ -54,4 +54,12 @@ let something = () => {
 props.dispatch(actionCreator(argument if having it))
 и зафигачть форму в meassages и браузер-роутером в индексе обернуть и использовать вместо
 рефа event.target (current.target для инпутов и textarea)
-40
+41  const reducer = (state, action) => {
+...
+    return state;
+};
+state - это та часть data, относящаяся к области редъюсера;
+константы будут в самом файле редъюсера, а сам он только изменяет state,  даже не обновряет страницу потом
+и в редъюсерах сделать вместо if switch - case
+    actoinCreators перенести к редъюсерам
+42 yarn add redux =)
