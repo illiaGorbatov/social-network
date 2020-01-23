@@ -10,9 +10,14 @@ const Profile = (props) => {
     return (
         <div className={style.profileWrapper}>
             <ProfileLogo/>
-            <AddPost addPost={props.addPost} postInputValue={props.profile.postInputValue}
-                     updatePostCurrentValue={props.updatePostCurrentValue}/>
-            {posts}
+            <div className={style.allElemsWrapper}>
+                <div className={style.placeholder1}>placeholder</div>
+                <div className={style.postsWrapper}>
+                    <AddPost dispatch={props.dispatch} postInputValue={props.profile.postInputValue}/>
+                    {posts}
+                </div>
+                <div className={style.placeholder2}>placeholder</div>
+            </div>
         </div>
     )
 };

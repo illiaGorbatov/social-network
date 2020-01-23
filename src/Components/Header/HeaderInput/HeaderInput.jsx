@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 
 const HeaderInput = () => {
     return (
-        <div className={style.profileHeader}>
+        <div className={style.headerInput}>
 
         </div>
     )

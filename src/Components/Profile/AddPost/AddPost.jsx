@@ -1,17 +1,20 @@
 import React from "react";
 import style from "./AddPost.module.sass";
+import {addPostCreator, updateAddPostInputValueCreator} from "../../../Data/Data";
 
 const AddPost = (props) => {
-    let newPost = React.createRef();
-    let updatePostValue = () => {
-        let value = newPost.current.value;
-        props.updatePostCurrentValue(value);
+    let addPostInputChangeHandler = (event) => {
+        let inputValue = event.target.value;
+        props.dispatch(updateAddPostInputValueCreator(inputValue))
+    };
+    let addPostClickHandler = () => {
+        props.dispatch(addPostCreator())
     };
 
     return (
         <div className={style.addPost}>
-            <input onChange={updatePostValue} ref={newPost} value={props.postInputValue}/>
-            <button onClick={props.addPost}>Add</button>
+            <input onChange={addPostInputChangeHandler} value={props.postInputValue}/>
+            <button onClick={addPostClickHandler}>Add</button>
         </div>
     )
 };
