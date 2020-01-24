@@ -63,3 +63,12 @@ state - это та часть data, относящаяся к области р
 и в редъюсерах сделать вместо if switch - case
     actoinCreators перенести к редъюсерам
 42 yarn add redux =)
+    let reducers = combineReducers({
+        вкидываем все сюда и импортируем
+    })
+const store = createStore(reducers);(импортировать из redux)
+
+а в файл с редъюсерами ставим initialState, равный куску данных state, передающийся в редъюсер в качестве дефолтного
+    ещё тёрки с store.subscribe
+
+

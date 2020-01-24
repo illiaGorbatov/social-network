@@ -10,16 +10,14 @@ import Friendslist from "./Components/Friendlist/Friendslist";
 
 const App = (props) => {
     return (
-
-            <div className="app">
-                <Header/>
-                <Navigation/>
-                <Route path="/profile" render={() => <Profile profile={props.data.profile} dispatch={props.dispatch}/>}/>
-                <Route path="/newsfeed" render={() => <Newsfeed news={props.data.news}/>}/>
-                <Route path="/friendlist" render={() => <Friendslist friends={props.data.friends}/>}/>
-                <Route path="/messages" render={() => <Dialog chats={props.data.chat} dispatch={props.dispatch}/>}/>
-            </div>
-
+        <div className="app">
+            <Header/>
+            <Navigation/>
+            <Route path="/profile" render={() => <Profile profile={props.state.profile} dispatch={props.dispatch}/>}/>
+            <Route path="/newsfeed" render={() => <Newsfeed />}/>
+            <Route path="/friendlist" render={() => <Friendslist />}/>
+            <Route path="/messages" render={() => <Dialog chats={props.state.chat} dispatch={props.dispatch}/>}/>
+        </div>
     );
 };
 

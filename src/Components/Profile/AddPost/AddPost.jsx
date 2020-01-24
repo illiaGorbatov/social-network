@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./AddPost.module.sass";
-import {addPostCreator, updateAddPostInputValueCreator} from "../../../Data/Data";
+import {addPostCreator, updateAddPostInputValueCreator} from "../../../Redux/Profile-reducer";
+
 
 const AddPost = (props) => {
     let addPostInputChangeHandler = (event) => {

@@ -2,9 +2,11 @@ import React from "react";
 import style from "./Dialog.module.sass";
 import Message from "./Message/Message";
 import FriendChatName from "./FriendChatName/FriendChatName";
-import {sendMessageCreator, updateChatInputValueCreator} from "../../Data/Data";
+import {sendMessageCreator, updateChatInputValueCreator} from "../../Redux/Messages-reducer";
+
 
 const Dialog = (props) => {
+    debugger;
     let friendChats = props.chats.friends.map(friend => <FriendChatName name={friend.name} id={friend.id}/>);
     let messagesElement = props.chats.messages.map(message => <Message message={message.message}/>);
 
