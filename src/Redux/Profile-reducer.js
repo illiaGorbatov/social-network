@@ -1,7 +1,8 @@
 const ADD_NEW_POST = 'ADD_NEW_POST';
 const UPDATE_POST_INPUT_VALUE = 'UPDATE_POST_INPUT_VALUE';
 
-let initialState = {posts: [
+let initialState = {
+    posts: [
         {post: 'Hey there!', id: 1, likesCount: 5},
         {post: 'Nigga', id: 2, likesCount: 4},
         {post: 'Bitch!', id: 3, likesCount: 3},
@@ -12,17 +13,21 @@ let initialState = {posts: [
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_POST_INPUT_VALUE:
-            state.postInputValue = action.value;
-            return state;
+            return {
+                ...state,
+                postInputValue: action.value,
+            };
         case ADD_NEW_POST:
             let newPost = {
                 post: state.postInputValue,
                 id: state.posts.length + 1,
                 likesCount: 1,
             };
-            state.posts.push(newPost);
-            state.postInputValue = '';
-            return state;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                postInputValue: ''
+            };
         default:
             return state;
     }

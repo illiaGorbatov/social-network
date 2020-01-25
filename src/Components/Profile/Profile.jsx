@@ -13,7 +13,8 @@ const Profile = (props) => {
             <div className={style.allElemsWrapper}>
                 <div className={style.placeholder1}>placeholder</div>
                 <div className={style.postsWrapper}>
-                    <AddPost dispatch={props.dispatch} postInputValue={props.profile.postInputValue}/>
+                    <AddPost addPost={props.addPost} addPostInputChange={props.addPostInputChange}
+                             postInputValue={props.profile.postInputValue}/>
                     {posts}
                 </div>
                 <div className={style.placeholder2}>placeholder</div>

@@ -2,22 +2,16 @@ import React from "react";
 import style from "./Dialog.module.sass";
 import Message from "./Message/Message";
 import FriendChatName from "./FriendChatName/FriendChatName";
-import {sendMessageCreator, updateChatInputValueCreator} from "../../Redux/Messages-reducer";
-
 
 const Dialog = (props) => {
     debugger;
-    let friendChats = props.chats.friends.map(friend => <FriendChatName name={friend.name} id={friend.id}/>);
-    let messagesElement = props.chats.messages.map(message => <Message message={message.message}/>);
+    let friendChats = props.chat.friends.map(friend => <FriendChatName name={friend.name} id={friend.id}/>);
+    let messagesElements = props.chat.messages.map(message => <Message message={message.message}/>);
 
     let updateChatInputHandler = (event) => {
         let inputValue = event.target.value;
-        props.dispatch(updateChatInputValueCreator(inputValue))
+        props.updateChatInput(inputValue);
     };
-    let sendMessageButtonHandler = () => {
-        props.dispatch(sendMessageCreator())
-    };
-
 
     return (
         <div className={style.messagesWrapper}>
@@ -25,10 +19,10 @@ const Dialog = (props) => {
                 {friendChats}
             </div>
             <div className={style.messages}>
-                {messagesElement}
+                {messagesElements}
             </div>
-            <input onChange={updateChatInputHandler} value={props.chats.chatInputCurrentValue}/>
-            <button onClick={sendMessageButtonHandler}>Send</button>
+            <input onChange={updateChatInputHandler} value={props.chat.chatInputCurrentValue}/>
+            <button onClick={props.sendMessage}>Send</button>
         </div>
     )
 };

@@ -19,16 +19,20 @@ let initialState = {
 export const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_CHAT_INPUT_VALUE:
-            state.chatInputCurrentValue = action.value;
-            return state;
+            return {
+                ...state,
+                chatInputCurrentValue: action.value
+            };
         case SEND_MESSAGE:
             let newMessage = {
                 message: state.chatInputCurrentValue,
                 id: state.messages.length + 1
             };
-            state.messages.push(newMessage);
-            state.chatInputCurrentValue = '';
-            return state;
+            return {
+                ...state,
+                messages: [...state.messages, newMessage],
+                chatInputCurrentValue: ''
+            };
         default:
             return state;
     }

@@ -70,5 +70,29 @@ const store = createStore(reducers);(импортировать из redux)
 
 а в файл с редъюсерами ставим initialState, равный куску данных state, передающийся в редъюсер в качестве дефолтного
     ещё тёрки с store.subscribe
-
+43 создаём контейнерную компоненту, в которой хранятся диспатчи и др, а в репрезентационных компонентах
+будут функции-коллбэки к контейнерному компоненту
+контейнеру можно отдать весь store
+44 contextAPI react, но в react-redux есть более крутой аналог
+45 Provider из react-reduxa
+const ContainerConponent = connect() (Component) (ага, двойной вызов)
+   а в качестве аргументовв первые скобки передаём функции mapStateToProps, mapDispatchToProps
+как видно из названия, первая функция передаёт данные, вторая - диспатчи
+ const   mapStateToProps = (state или dispatch в диспатче) => {
+        return {
+            propsName: props
+        }
+    };
+а в диспатчах пишем
+    propsName: () => {
+        dispatchFunction
+    }
+46 объекты НЕ копируются путём let a = b
+есть неглубокая копия let a = {...b}
+47 убираем нахер всю прежнюю перерисовку
+в редъюсерах создаём копию объекта state, копии объектов внутри state и их уже изменяем
+48 stateCopy = {
+    ...state,
+    messages: [...state.messages]
+    } и вообще другая запись много чего=)
 
