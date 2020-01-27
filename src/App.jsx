@@ -7,16 +7,18 @@ import Newsfeed from "./Components/Newsfeed/Newsfeed";
 import Friendslist from "./Components/Friendlist/Friendslist";
 import DialogContainer from "./Components/Messages/Dialog-container";
 import ProfileContainer from "./Components/Profile/Profile-container";
+import UsersPageContainer from "./Components/Users/UsersPage-container";
 
-const App = (props) => {
+const App = () => {
     return (
         <div className="app">
             <Header/>
             <Navigation/>
-            <Route path="/profile" render={() => <ProfileContainer store={props.store}/>}/>
+            <Route path="/profile" render={() => <ProfileContainer />}/>
             <Route path="/newsfeed" render={() => <Newsfeed />}/>
             <Route path="/friendlist" render={() => <Friendslist />}/>
-            <Route path="/messages" render={() => <DialogContainer store={props.store}/>}/>
+            <Route path="/messages" render={() => <DialogContainer />}/>
+            <Route path="/users" render={() => <UsersPageContainer />}/>
         </div>
     );
 };
