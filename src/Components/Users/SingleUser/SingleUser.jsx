@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./SingleUser.module.sass";
+import avatarImage from "../../../assets/User_Avatar.png"
 
 const SingleUser = (props) => {
 
@@ -16,11 +17,12 @@ const SingleUser = (props) => {
         }
     };
 
+    let avatar = props.userAvatar ? props.userAvatar : avatarImage;
+
     return (
         <div className={style.userWrapper}>
-            <img src={props.userAvatar} className={style.userAvatar}/>
-            <div className={style.userName}>{props.firstName} {props.secondName}</div>
-            <div className={style.userLocation}>{props.country} {props.city}</div>
+            <img src={avatar} className={style.userAvatar}/>
+            <div className={style.userName}>{props.name}</div>
             <button className={style.followButton} onClick={followButtonClickHandler}>
                 {props.followed ? 'unfollow' : 'follow'}
             </button>

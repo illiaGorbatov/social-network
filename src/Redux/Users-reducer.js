@@ -1,16 +1,14 @@
 const FOLLOW_USER = 'FOLLOW_USER';
 const UNFOLLOW_USER = 'UNFOLLOW_USER';
-const REQUEST_USERS = 'REQUEST_USERS';
+const SET_USERS = 'SET_USERS';
+const SET_USERS_TOTAL_COUNT = "SET_USERS_TOTAL_COUNT";
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 let initialState = {
-    usersList: [
-        {firstName: 'Illia', secondName: 'Horbatov', location: {country: 'Belarus', city:'Minsk' }, followed: true,
-        userAvatar: 'https://pp.userapi.com/c850120/v850120842/c2696/bbWc33P1C_k.jpg?ava=1', id: 1},
-        {firstName: 'Hesus', secondName: 'Christ', location: {country: 'Israel', city:'Jerusalem' }, followed: false,
-        userAvatar: 'https://previews.123rf.com/images/panyamail/panyamail1809/panyamail180900343/109879063-user-avatar-icon-sign-profile-symbol.jpg', id: 2},
-        {firstName: 'Deus', secondName: 'Vult', location: {country: 'Vatican', city:'Vatican' }, followed: true,
-        userAvatar: 'https://upload.wikimedia.org/wikipedia/commons/6/67/User_Avatar.png', id: 3}
-    ]
+    usersList: [],
+    totalUsersCount: 1,
+    onPageUsersCount: 10,
+    currentPage: 1
 };
 
 export const usersPageReducer = (state = initialState, action) => {
@@ -37,13 +35,29 @@ export const usersPageReducer = (state = initialState, action) => {
                     } else return user
                 })
             };
-        case REQUEST_USERS:
-            return state;
+        case SET_USERS:
+            return {
+                ...state,
+                usersList: action.users,
+            };
+        case SET_USERS_TOTAL_COUNT:
+            return {
+                ...state,
+                totalUsersCount: action.count
+            };
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.page
+            };
         default:
             return state;
     }
 };
 
-export const followThisUserAC = (id) => ({type: FOLLOW_USER, userID: id});
-export const unfollowThisUserAC = (id) => ({type: UNFOLLOW_USER, userID: id});
+export const followThisUserAC = (userID) => ({type: FOLLOW_USER, userID});
+export const unfollowThisUserAC = (userID) => ({type: UNFOLLOW_USER, userID});
+export const setUsersFromServerAC = (users) => ({type: SET_USERS, users});
+export const setUsersTotalCountFromServerAC = (count) => ({type: SET_USERS_TOTAL_COUNT, count});
+export const setCurrentPageAC = (page) => ({type: SET_CURRENT_PAGE, page});
 
