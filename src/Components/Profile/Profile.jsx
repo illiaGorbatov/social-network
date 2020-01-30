@@ -5,16 +5,16 @@ import Post from "./Post/Post";
 import AddPost from "./AddPost/AddPost";
 
 const Profile = (props) => {
-    let posts = props.profile.posts.map(post => <Post id={post.id} postContent={post.post}/>);
-
+    let posts = props.posts.map(post => <Post key={post.id} id={post.id} postContent={post.post}/>);
+debugger
     return (
         <div className={style.profileWrapper}>
-            <ProfileLogo/>
+            <ProfileLogo photos={props.userInfo.photos} fullName={props.userInfo.fullName} aboutMe={props.userInfo.aboutMe}/>
             <div className={style.allElemsWrapper}>
                 <div className={style.placeholder1}>placeholder</div>
                 <div className={style.postsWrapper}>
                     <AddPost addPost={props.addPost} addPostInputChange={props.addPostInputChange}
-                             postInputValue={props.profile.postInputValue}/>
+                             postInputValue={props.postInputValue}/>
                     {posts}
                 </div>
                 <div className={style.placeholder2}>placeholder</div>

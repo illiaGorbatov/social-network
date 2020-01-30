@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./SingleUser.module.sass";
 import avatarImage from "../../../assets/User_Avatar.png"
+import {NavLink} from "react-router-dom";
 
 const SingleUser = (props) => {
 
@@ -21,8 +22,10 @@ const SingleUser = (props) => {
 
     return (
         <div className={style.userWrapper}>
-            <img src={avatar} className={style.userAvatar}/>
-            <div className={style.userName}>{props.name}</div>
+            <NavLink to={`/profile/${props.userID}`}>
+                <img src={avatar} className={style.userAvatar}/>
+                <div className={style.userName}>{props.name}</div>
+            </NavLink>
             <button className={style.followButton} onClick={followButtonClickHandler}>
                 {props.followed ? 'unfollow' : 'follow'}
             </button>

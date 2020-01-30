@@ -3,10 +3,7 @@ import * as axios from "axios";
 import UsersPage from "./UsersPage";
 import {connect} from "react-redux";
 import {
-    followThisUserAC, setCurrentPageAC,
-    setUsersFromServerAC,
-    setUsersTotalCountFromServerAC,
-    unfollowThisUserAC
+    followThisUser, unfollowThisUser, setUsers, setUsersTotalCount, setCurrentPage
 } from "../../Redux/Users-reducer";
 
 class UsersPageContainer extends React.Component {
@@ -47,25 +44,7 @@ const mapStateToProps = (state) => {
         currentPage: state.users.currentPage
     }
 };
-const mapDispatchToProps = (dispatch) => {
-    return {
-        followThisUser: (id) => {
-            dispatch(followThisUserAC(id))
-        },
-        unfollowThisUser: (id) => {
-            dispatch(unfollowThisUserAC(id))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersFromServerAC(users))
-        },
-        setUsersTotalCount: (count) => {
-            dispatch(setUsersTotalCountFromServerAC(count))
-        },
-        setCurrentPage: (page) => {
-            dispatch(setCurrentPageAC(page))
-        }
-    }
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersPageContainer);
+export default connect(mapStateToProps,
+    {followThisUser, unfollowThisUser, setUsers, setUsersTotalCount, setCurrentPage})(UsersPageContainer);
 

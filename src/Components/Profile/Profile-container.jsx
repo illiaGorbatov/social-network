@@ -1,24 +1,38 @@
 import React from "react";
-import Profile from "./Profile";
-import {addPostCreator, updateAddPostInputValueCreator} from "../../Redux/Profile-reducer";
+import {addPost, addPostInputChange, setUserInfo} from "../../Redux/Profile-reducer";
 import {connect} from "react-redux";
+import Profile from "./Profile";
+import * as axios from "axios";
+import {withRouter} from "react-router-dom";
+
+class ProfileContainer extends  React.Component {
+
+    componentDidMount() {
+        let userId = this.props.match.params.userId;
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+            .then(response => {
+                this.props.setUserInfo(response.data);
+            })
+    }
+
+    render() {
+        return (
+            <Profile userInfo={this.props.userInfo} posts={this.props.posts} postInputValue={this.props.postInputValue}
+                     addPost={this.props.addPost} addPostInputChange={this.props.addPostInputChange}
+                     setUserInfo={this.props.setUserInfo}
+            />
+        )
+    }
+}
 
 const mapStateToProps = (state) => {
     return {
-        profile: state.profile,
-    }
-};
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addPost: () => {
-            dispatch(addPostCreator())
-        },
-        addPostInputChange: (inputValue) => {
-            dispatch(updateAddPostInputValueCreator(inputValue))
-        }
+        userInfo: state.profile.userInfo,
+        posts: state.profile.posts,
+        postInputValue: state.profile.postInputValue
     }
 };
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps) (Profile);
+let UrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default ProfileContainer;
+export default connect(mapStateToProps, {addPost, addPostInputChange, setUserInfo}) (UrlDataContainerComponent);
