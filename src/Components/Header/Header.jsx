@@ -1,16 +1,43 @@
 import React from "react";
-import style from "./Header.module.sass";
-import HeaderInput from "./HeaderInput/HeaderInput";
-import HeaderMenu from "./HeaderMenu/HeaderMenu";
+import {NavLink} from "react-router-dom";
+import styled from "styled-components";
 
-const Header = () => {
+const HeaderWrapper = styled.div`
+  background-color: red;
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const MainLogo = styled.div`
+  background-color: gold;
+  background-image: url("https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg");
+  max-width: 100px;
+`;
+
+const PageName = styled.div`
+  text-transform: uppercase
+`;
+
+const HeaderInput = styled.div`
+  background-color: yellow;
+  height: 90px;
+  width: 200px;
+`;
+
+
+const Header = (props) => {
     return (
-        <div className={style.headerWrapper}>
-            <div className={style.mainLogo}></div>
-            <div className={style.pageName}>Profile<br/>Page</div>
-            <HeaderInput/>
-            <HeaderMenu/>
-        </div>
+        <HeaderWrapper>
+            <MainLogo/>
+            <PageName>Profile<br/>Page</PageName>
+            <HeaderInput>
+                {props.isAuth ? props.login :
+                    <NavLink to={'/login'}>
+                        Login
+                    </NavLink>}
+            </HeaderInput>
+        </HeaderWrapper>
     )
 };
 

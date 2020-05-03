@@ -1,11 +1,16 @@
 import React from "react";
-import style from "./Newsfeed.module.sass";
+import styled from "styled-components";
+
+const ContentWrapper = styled.div`
+  background-color: aqua;
+  grid-area: content;
+`;
 
 const Newsfeed = () => {
     return (
-        <div className={style.contentWrapper}>
+        <ContentWrapper>
             Newsfeed
-        </div>
+        </ContentWrapper>
     )
 };
 

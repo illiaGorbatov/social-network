@@ -1,50 +1,42 @@
 import React from "react";
-import * as axios from "axios";
 import UsersPage from "./UsersPage";
 import {connect} from "react-redux";
 import {
-    followThisUser, unfollowThisUser, setUsers, setUsersTotalCount, setCurrentPage
+    getUsers,
+    followUser, unfollowUser
 } from "../../Redux/Users-reducer";
+import {withAuthRedirect} from "../../HOC/WithAuthRedirect";
+import {compose} from "redux";
 
 class UsersPageContainer extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.onPageUsersCount}`)
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setUsersTotalCount(response.data.totalCount);
-            })
+        this.props.getUsers(this.props.currentPage, this.props.onPageUsersCount)
     }
 
     onPageChange = (page) => {
-        this.props.setCurrentPage(page);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.onPageUsersCount}`)
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setUsersTotalCount(response.data.totalCount);
-            })
+        this.props.getUsers(page, this.props.onPageUsersCount)
     };
 
     render() {
-        return (<UsersPage users={this.props.users}
-                           followThisUser={this.props.followThisUser} unfollowThisUser={this.props.unfollowThisUser}
-                           onPageUsersCount={this.props.onPageUsersCount} totalUsersCount={this.props.totalUsersCount}
-                           currentPage={this.props.currentPage} setCurrentPage={this.props.setCurrentPage}
+        return (<UsersPage {...this.props}
                            onPageChange={this.onPageChange}
             />
         )
     }
 };
 
+
 const mapStateToProps = (state) => {
     return {
         users: state.users.usersList,
         totalUsersCount: state.users.totalUsersCount,
         onPageUsersCount: state.users.onPageUsersCount,
-        currentPage: state.users.currentPage
+        currentPage: state.users.currentPage,
+        followingInProgress: state.users.followingInProgress,
     }
 };
 
-export default connect(mapStateToProps,
-    {followThisUser, unfollowThisUser, setUsers, setUsersTotalCount, setCurrentPage})(UsersPageContainer);
+export default compose(connect(mapStateToProps, {unfollowUser, followUser, getUsers}),
+    withAuthRedirect)(UsersPageContainer)
 

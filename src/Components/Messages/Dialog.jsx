@@ -1,10 +1,23 @@
 import React from "react";
-import style from "./Dialog.module.sass";
 import Message from "./Message/Message";
 import FriendChatName from "./FriendChatName/FriendChatName";
+import styled from "styled-components";
+
+const MessagesWrapper = styled.div`
+  background-color: azure;
+  grid-area: content;
+  margin-left: 200px;
+`;
+
+const ChatNames = styled.div`
+  width: 100px;
+`;
+
+const Messages = styled.div`
+  float: right
+`;
 
 const Dialog = (props) => {
-    debugger;
     let friendChats = props.chat.friends.map(friend => <FriendChatName name={friend.name} id={friend.id}/>);
     let messagesElements = props.chat.messages.map(message => <Message message={message.message}/>);
 
@@ -14,16 +27,16 @@ const Dialog = (props) => {
     };
 
     return (
-        <div className={style.messagesWrapper}>
-            <div className={style.chatNames}>
+        <MessagesWrapper>
+            <ChatNames>
                 {friendChats}
-            </div>
-            <div className={style.messages}>
+            </ChatNames>
+            <Messages>
                 {messagesElements}
-            </div>
+            </Messages>
             <input onChange={updateChatInputHandler} value={props.chat.chatInputCurrentValue}/>
             <button onClick={props.sendMessage}>Send</button>
-        </div>
+        </MessagesWrapper>
     )
 };
 

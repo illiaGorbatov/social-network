@@ -3,16 +3,15 @@ import styles from "./UsersPage.module.sass";
 import SingleUser from "./SingleUser/SingleUser";
 
 const UsersPage = (props) => {
-    let users = props.users.map(user => <SingleUser key={user.id} userID={user.id} userAvatar={user.photos.small}
-    name={user.name} followed={user.followed} followThisUser={props.followThisUser}
-    unfollowThisUser={props.unfollowThisUser}/>);
+    let users = props.users.map(user => <SingleUser key={user.id} userId={user.id} userAvatar={user.photos.small}
+    name={user.name} followed={user.followed} unfollowUser={props.unfollowUser} followUser={props.followUser}
+    followingInProgress={props.followingInProgress}/>);
 
     let pageCount = Math.ceil(props.totalUsersCount / props.onPageUsersCount);
     let pages = [];
     for (let i=1; i<=pageCount; i++) {
         pages.push(i)
     };
-    debugger
 
     return (
         <div className={styles.usersPageWrapper}>

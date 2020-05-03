@@ -1,14 +1,19 @@
 import React from "react";
-import style from "./FriendChatName.module.sass";
 import {NavLink} from "react-router-dom";
+import styled from "styled-components";
+
+const Chat = styled(NavLink)`
+  border: 2px solid black;
+  border-radius: 3px;
+`;
 
 const FriendChatName = (props) => {
     let path = '/messages/' + props.id;
 
     return (
-        <NavLink to={path} className={style.chat}>
+        <Chat to={path}>
             {props.name}
-        </NavLink>
+        </Chat>
     )
 };
 

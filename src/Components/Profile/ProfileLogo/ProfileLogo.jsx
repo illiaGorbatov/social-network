@@ -1,24 +1,50 @@
 import React from "react";
-import style from "./ProfileLogo.module.sass";
-import {NavLink} from "react-router-dom";
+import styled from "styled-components";
+import ProfileStatus from "../ProfileStatus";
+
+const ProfileHeader = styled.div`
+  max-width: 1260px;
+  margin: 50px auto;
+  border-radius: 10px;
+  background-color: antiquewhite;
+  position: relative;
+`;
+
+const ProfileBackground = styled.div`
+  width: 1260px;
+  height: 450px;
+`;
+
+const UserProfileInfo = styled.div`
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align: center;
+  & > h1 {
+      margin: 3px 0
+  };
+`;
+
+const UserPhoto = styled.div`
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  border: 5px solid white;
+  border-radius: 50%;
+`;
 
 const ProfileLogo = (props) => {
 
     return (
-        <div className={style.profileHeader}>
-            <div className={style.profileBackground} style={{backgroundImage: `url(${props.photos.large})`}}></div>
-            <div className={style.userProfileInfo}>
-                <div className={style.userPhoto} style={{backgroundImage: `url(${props.photos.small})`}}></div>
+        <ProfileHeader>
+            <ProfileBackground style={{backgroundImage: `url(${props.photos.large})`}}/>
+            <UserProfileInfo>
+                <UserPhoto style={{backgroundImage: `url(${props.photos.small})`}}/>
                 <h1>{props.fullName}</h1>
-                <span>{props.aboutMe}</span>
-            </div>
-            <div className={style.profileLinks}>
-                <NavLink to='/about'>About</NavLink>
-                <NavLink to='/friends'>Friends</NavLink>
-                <NavLink to='/photos'>Photos</NavLink>
-                <NavLink to='/videos'>Videos</NavLink>
-            </div>
-        </div>
+                <ProfileStatus status={'hello bitch'}/>
+            </UserProfileInfo>
+        </ProfileHeader>
     )
 };
 

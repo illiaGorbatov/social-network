@@ -1,11 +1,15 @@
 import React from "react";
-import style from "./Message.module.sass";
+import styled from "styled-components";
+
+const MessageWrapper = styled.div`
+  border-bottom: 2px solid black
+`;
 
 const Message = (props) => {
     return (
-        <div className={style.messagesWrapper}>
+        <MessageWrapper>
             {props.message}
-        </div>
+        </MessageWrapper>
     )
 };
 

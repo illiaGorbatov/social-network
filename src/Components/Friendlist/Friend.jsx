@@ -1,5 +1,4 @@
 import React from "react";
-import Friend from "./Friend";
 import styled from "styled-components";
 
 const ContentWrapper = styled.div`
@@ -7,15 +6,13 @@ const ContentWrapper = styled.div`
   grid-area: content;
 `;
 
-
-const Friendslist = (props) => {
-    let friendlistElements = props.friends.map( friend => <Friend name={friend.name} id={friend.id} />);
+const Friend = (props) => {
 
     return (
         <ContentWrapper>
-            {friendlistElements}
+            {props.name}
         </ContentWrapper>
     )
 };
 
-export default Friendslist;
+export default Friend;

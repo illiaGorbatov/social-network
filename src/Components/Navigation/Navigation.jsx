@@ -1,16 +1,30 @@
 import React from "react";
-import style from "./Navigation.module.sass";
 import {NavLink} from "react-router-dom";
+import styled from "styled-components";
+
+const NavigationWrapper = styled.div`
+  background-color: azure;
+  position: absolute;
+  height: calc( 100vh - 100px );
+  left: 0;
+  top: 100px;
+`;
+
+const NavigationLink = styled(NavLink)`
+  display: block;
+  margin: 20px 15px;
+`;
+
 
 const Navigation = () => {
     return (
-        <div className={style.navigationWrapper}>
-            <NavLink to="/profile">Profile</NavLink>
-            <NavLink to="/newsfeed">Newsfeed</NavLink>
-            <NavLink to="/friendlist">Friends</NavLink>
-            <NavLink to="/messages">Messages</NavLink>
-            <NavLink to="/users">Users</NavLink>
-        </div>
+        <NavigationWrapper>
+            <NavigationLink to="/profile">Profile</NavigationLink>
+            <NavigationLink to="/newsfeed">Newsfeed</NavigationLink>
+            <NavigationLink to="/friendlist">Friends</NavigationLink>
+            <NavigationLink to="/messages">Messages</NavigationLink>
+            <NavigationLink to="/users">Users</NavigationLink>
+        </NavigationWrapper>
     )
 };
 

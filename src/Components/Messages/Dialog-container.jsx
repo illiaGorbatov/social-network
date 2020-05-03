@@ -2,6 +2,8 @@ import React from "react";
 import {sendMessageCreator, updateChatInputValueCreator} from "../../Redux/Messages-reducer";
 import Dialog from "./Dialog";
 import {connect} from "react-redux";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../HOC/WithAuthRedirect";
 
 
 const mapStateToProps = (state) => {
@@ -20,6 +22,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-const DialogContainer = connect(mapStateToProps, mapDispatchToProps) (Dialog);
-
-export default DialogContainer;
+export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(Dialog)
