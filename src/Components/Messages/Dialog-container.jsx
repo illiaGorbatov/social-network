@@ -1,5 +1,5 @@
 import React from "react";
-import {sendMessageCreator, updateChatInputValueCreator} from "../../Redux/Messages-reducer";
+import {sendMessageCreator} from "../../Redux/Messages-reducer";
 import Dialog from "./Dialog";
 import {connect} from "react-redux";
 import {compose} from "redux";
@@ -13,11 +13,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateChatInput: (inputValue) => {
-            dispatch(updateChatInputValueCreator(inputValue))
-        },
-        sendMessage: () => {
-            dispatch(sendMessageCreator())
+        sendMessage: (newMessage) => {
+            dispatch(sendMessageCreator(newMessage))
         }
     }
 };

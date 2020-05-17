@@ -1,8 +1,9 @@
-import {profileAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_NEW_POST = 'ADD_NEW_POST';
 const UPDATE_POST_INPUT_VALUE = 'UPDATE_POST_INPUT_VALUE';
 const SET_USER_PAGE = 'SET_USER_PAGE';
+const SET_STATUS = 'SET_STATUS'
 
 let initialState = {
     userInfo: {
@@ -31,19 +32,14 @@ let initialState = {
         {post: 'Nigga', id: 2, likesCount: 4},
         {post: 'Bitch!', id: 3, likesCount: 3},
     ],
-    postInputValue: '',
+    status: ''
 };
 
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_POST_INPUT_VALUE:
-            return {
-                ...state,
-                postInputValue: action.value,
-            };
         case ADD_NEW_POST:
             let newPost = {
-                post: state.postInputValue,
+                post: action.post,
                 id: state.posts.length + 1,
                 likesCount: 1,
             };
@@ -57,18 +53,33 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 userInfo: action.userInfo
             };
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
+            };
         default:
             return state;
     }
 };
 
-export const addPostInputChange = (value) => ({type: UPDATE_POST_INPUT_VALUE, value});
-export const addPost = () => ({type: ADD_NEW_POST});
+export const addPost = (post) => ({type: ADD_NEW_POST, post});
 export const setUserInfo = (userInfo) => ({type: SET_USER_PAGE, userInfo});
+const setStatus = (status) => ({type: SET_STATUS, status})
 
 export const getUserPage = (userId) => (dispatch) => {
     profileAPI.getProfile(userId).then(data => {
         dispatch(setUserInfo(data));
+    })
+};
+export const getStatus = (userId) => (dispatch) => {
+    usersAPI.getStatus(userId).then(res => {
+        dispatch(setStatus(res.data))
+    })
+}
+export const updateStatus = (status) => (dispatch) => {
+    usersAPI.updateStatus(status).then(res => {
+        if (res.data.resultCode === 0) dispatch(setStatus(status))
     })
 }
 

@@ -1,4 +1,3 @@
-const UPDATE_CHAT_INPUT_VALUE = 'UPDPATE_CHAT_INPUT_VALUE';
 const SEND_MESSAGE = 'SEND_MESSAGE';
 
 let initialState = {
@@ -13,31 +12,19 @@ let initialState = {
         {name: 'Леонид', id: 3},
         {name: 'Лаврентий', id: 4},
     ],
-    chatInputCurrentValue: '',
 };
 
 export const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_CHAT_INPUT_VALUE:
-            return {
-                ...state,
-                chatInputCurrentValue: action.value
-            };
         case SEND_MESSAGE:
-            let newMessage = {
-                message: state.chatInputCurrentValue,
-                id: state.messages.length + 1
-            };
             return {
                 ...state,
-                messages: [...state.messages, newMessage],
-                chatInputCurrentValue: ''
+                messages: [...state.messages, {message: action.newMessage, id: 5}],
             };
         default:
             return state;
     }
 };
 
-export const updateChatInputValueCreator = (inputValue) => ({type: UPDATE_CHAT_INPUT_VALUE, value: inputValue});
-export const sendMessageCreator = () => ({type: SEND_MESSAGE});
+export const sendMessageCreator = (newMessage) => ({type: SEND_MESSAGE, newMessage});
 

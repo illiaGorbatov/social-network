@@ -1,12 +1,14 @@
 import React from "react";
 import UsersPage from "./UsersPage";
 import {connect} from "react-redux";
+import {followUser, getUsers, unfollowUser} from "../../Redux/Users-reducer";
 import {
-    getUsers,
-    followUser, unfollowUser
-} from "../../Redux/Users-reducer";
-import {withAuthRedirect} from "../../HOC/WithAuthRedirect";
-import {compose} from "redux";
+    getCurrentPage,
+    getFollowingInProgress,
+    getOnPageUsersCount,
+    getUsersCount,
+    getUsersSelect
+} from "../../Redux/users-selectors";
 
 class UsersPageContainer extends React.Component {
 
@@ -29,14 +31,13 @@ class UsersPageContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users.usersList,
-        totalUsersCount: state.users.totalUsersCount,
-        onPageUsersCount: state.users.onPageUsersCount,
-        currentPage: state.users.currentPage,
-        followingInProgress: state.users.followingInProgress,
+        users: getUsersSelect(state),
+        totalUsersCount: getUsersCount(state),
+        onPageUsersCount: getOnPageUsersCount(state),
+        currentPage: getCurrentPage(state),
+        followingInProgress: getFollowingInProgress(state),
     }
 };
 
-export default compose(connect(mapStateToProps, {unfollowUser, followUser, getUsers}),
-    withAuthRedirect)(UsersPageContainer)
+export default connect(mapStateToProps, {unfollowUser, followUser, getUsers})(UsersPageContainer)
 

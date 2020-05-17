@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ProfileStatus from "../ProfileStatus";
+import ProfileStatusWithHooks from "../ProfileStatusWithHooks";
 
 const ProfileHeader = styled.div`
   max-width: 1260px;
@@ -42,7 +42,7 @@ const ProfileLogo = (props) => {
             <UserProfileInfo>
                 <UserPhoto style={{backgroundImage: `url(${props.photos.small})`}}/>
                 <h1>{props.fullName}</h1>
-                <ProfileStatus status={'hello bitch'}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </UserProfileInfo>
         </ProfileHeader>
     )

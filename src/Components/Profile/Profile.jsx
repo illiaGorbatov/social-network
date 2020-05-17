@@ -43,7 +43,8 @@ const Profile = (props) => {
 
     return (
         <ProfileWrapper>
-            <ProfileLogo photos={props.userInfo.photos} fullName={props.userInfo.fullName} aboutMe={props.userInfo.aboutMe}/>
+            <ProfileLogo photos={props.userInfo.photos} fullName={props.userInfo.fullName} status={props.status}
+            updateStatus={props.updateStatus}/>
             <AllElemsWrapper>
                 <Placeholder1>placeholder</Placeholder1>
                 <PostsWrapper>

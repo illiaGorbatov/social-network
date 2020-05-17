@@ -1,5 +1,5 @@
 import React from "react";
-import {addPost, addPostInputChange, getUserPage} from "../../Redux/Profile-reducer";
+import {addPost, getStatus, getUserPage, updateStatus} from "../../Redux/Profile-reducer";
 import {connect} from "react-redux";
 import Profile from "./Profile";
 import {withRouter} from "react-router-dom";
@@ -10,14 +10,17 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
-        if (userId === undefined) userId = "6166"
-        this.props.getUserPage(userId)
+        if (!userId) {
+            userId = this.props.authorisedUserId;
+            if (!userId) this.props.history.push('/login')
+        }
+        this.props.getUserPage(userId);
+        this.props.getStatus(userId)
     }
 
     render() {
         return (
-            <Profile userInfo={this.props.userInfo} posts={this.props.posts} postInputValue={this.props.postInputValue}
-                     addPost={this.props.addPost} addPostInputChange={this.props.addPostInputChange}
+            <Profile {...this.props}
             />
         )
     }
@@ -28,12 +31,13 @@ const mapStateToProps = (state) => {
     return {
         userInfo: state.profile.userInfo,
         posts: state.profile.posts,
-        postInputValue: state.profile.postInputValue,
+        status: state.profile.status,
+        authorisedUserId: state.auth.id,
+        isAuth: state.auth.isAuth
     }
 };
 
 export default compose(connect(mapStateToProps, {
     addPost,
-    addPostInputChange,
-    getUserPage
+    getUserPage, getStatus, updateStatus
 }), withRouter, withAuthRedirect)(ProfileContainer)

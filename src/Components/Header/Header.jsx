@@ -32,7 +32,7 @@ const Header = (props) => {
             <MainLogo/>
             <PageName>Profile<br/>Page</PageName>
             <HeaderInput>
-                {props.isAuth ? props.login :
+                {props.isAuth ? <div> {props.login} <button onClick={props.logout}>logout</button> </div>:
                     <NavLink to={'/login'}>
                         Login
                     </NavLink>}
